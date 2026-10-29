@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PagePry 设置</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div class="eyebrow">PAGEPRY · 设置</div>
+      <h1>Xiaomi MiMo API</h1>
+      <p class="intro">配置按量付费 API Key，并单独测试模型连接。</p>
+    </header>
+
+    <section class="card" aria-labelledby="key-heading">
+      <div class="section-heading">
+        <div>
+          <h2 id="key-heading">API Key</h2>
+          <p>密钥默认隐藏，仅保存在当前浏览器的扩展本地存储中，不使用同步存储。</p>
+        </div>
+        <span class="local-badge">仅本机</span>
+      </div>
+
+      <label for="api-key">MiMo API Key</label>
+      <div class="secret-field">
+        <input id="api-key" type="password" autocomplete="off" autocapitalize="off"
+          spellcheck="false" placeholder="输入按量付费 API Key" aria-describedby="key-help">
+        <button id="toggle-key" class="button button-quiet" type="button"
+          aria-pressed="false" aria-label="显示 API Key">显示</button>
+      </div>
+      <p id="key-help" class="field-help">测试使用此处当前输入的密钥，不会自动改用已保存的旧值。</p>
+
+      <div class="actions">
+        <button id="test-connection" class="button button-primary" type="button" disabled>测试连接</button>
+        <button id="save-key" class="button button-secondary" type="button" disabled>保存</button>
+      </div>
+
+      <div class="status-block">
+        <div class="status-label">连接测试</div>
+        <p id="test-status" class="status" data-state="info" role="status" aria-live="polite">正在加载本机配置…</p>
+      </div>
+      <div class="status-block">
+        <div class="status-label">配置保存</div>
+        <p id="save-status" class="status" data-state="info" role="status" aria-live="polite">正在加载本机配置…</p>
+      </div>
+
+      <aside class="cost-note">
+        <strong>用量提示</strong>
+        <span>每次测试都会向小米 MiMo API 发送一条简短请求，可能产生 API 用量费用；请求最多生成 16 个 token。</span>
+      </aside>
+    </section>
+
+    <footer>
+      测试接口：MiMo-V2.6-Flash · 保存操作不会发起 API 请求。
+    </footer>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>

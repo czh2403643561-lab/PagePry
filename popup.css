@@ -1,0 +1,25 @@
+:root {
+  color-scheme: light;
+  font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+  color: #182230;
+  background: #fff;
+}
+body { width: 280px; margin: 0; }
+main { padding: 20px; }
+.brand { font-size: 18px; font-weight: 700; letter-spacing: -.02em; }
+p { margin: 8px 0 16px; color: #667085; font-size: 13px; line-height: 1.5; }
+button {
+  width: 100%;
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #fff;
+  background: #315efb;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+button:hover { background: #244bd1; }
+button:focus-visible { outline: 3px solid #a9bcff; outline-offset: 2px; }
+#popup-status { min-height: 18px; margin-top: 10px; color: #b42318; font-size: 12px; }

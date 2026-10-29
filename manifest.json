@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "PagePry",
+  "version": "0.1.0",
+  "description": "通过 AI API 增强网页信息采集能力。",
+  "permissions": ["storage"],
+  "host_permissions": ["https://api.xiaomimimo.com/*"],
+  "action": {
+    "default_title": "PagePry 设置",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html"
+}
