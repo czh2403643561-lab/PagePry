@@ -23,14 +23,34 @@ function startElementSampling() {
   const selectorFor = (element) => {
     const parts = [];
     let current = element;
-    while (current && current.nodeType === Node.ELEMENT_NODE && parts.length < 6) {
+    while (current && current.nodeType === Node.ELEMENT_NODE && parts.length < 30) {
       let part = current.tagName.toLowerCase();
-      if (current.id) part += `#${current.id.replace(/[^a-zA-Z0-9_-]/g, "_")}`;
-      else if (current.classList.length) part += `.${Array.from(current.classList).slice(0, 2).join(".")}`;
+      if (current.id && !current.id.includes("?")) part += `#${CSS.escape(current.id)}`;
+      else {
+        const classes = Array.from(current.classList).filter(name => !name.includes("?")).slice(0, 2);
+        if (classes.length) part += `.${classes.map(name => CSS.escape(name)).join(".")}`;
+        let index = 1;
+        for (let sibling = current.previousElementSibling; sibling; sibling = sibling.previousElementSibling) {
+          if (sibling.tagName === current.tagName) index += 1;
+        }
+        part += `:nth-of-type(${index})`;
+      }
       parts.unshift(part);
+      try {
+        const matches = document.querySelectorAll(parts.join(" > "));
+        if (matches.length === 1 && matches[0] === element) break;
+      } catch {}
       current = current.parentElement;
     }
     return parts.join(" > ");
+  };
+  const validateSelector = (element, selector) => {
+    try {
+      const matches = document.querySelectorAll(selector);
+      return { valid: true, match_count: matches.length, matches_target: Array.from(matches).includes(element), unique: matches.length === 1 && matches[0] === element };
+    } catch {
+      return { valid: false, match_count: 0, matches_target: false, unique: false };
+    }
   };
   const xpathFor = (element) => {
     const parts = [];
@@ -92,6 +112,7 @@ function startElementSampling() {
     class: compactText(element.className, 240),
     id: element.id || null,
     selector: selectorFor(element),
+    selector_validation: validateSelector(element, selectorFor(element)),
     xpath: xpathFor(element),
     text: compactText(element.innerText || element.textContent || "", 500),
     possible_field_types: guessFieldTypes(element),
