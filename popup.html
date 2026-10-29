@@ -10,6 +10,9 @@
   <main>
     <div class="brand">PagePry</div>
     <p class="intro">用 MiMo 整理当前公开网页中的页面证据。</p>
+    <button id="start-sampling" class="button button-secondary" type="button">手动采样元素</button>
+    <button id="export-package" class="button button-primary" type="button">分析与报告（下载 ZIP）</button>
+    <p class="privacy-note">报告和快照在本机生成；请只在可公开分享的页面使用。快照会尝试移除常见敏感信息，但无法保证识别页面中的所有敏感内容，请检查后再分享。</p>
     <button id="analyze-current" class="button button-primary" type="button">分析当前页面</button>
     <button id="open-settings" class="button button-secondary" type="button">API 设置</button>
     <p class="privacy-note">仅在点击分析后，当前页标题、去掉查询参数的网址、页面描述、标题与表格摘要及最多 9,000 字可见文字会发送给小米 MiMo API；可能产生用量费用。请勿在敏感页面使用。</p>
@@ -19,6 +22,8 @@
       <pre id="analysis-content"></pre>
     </section>
   </main>
+  <script src="vendor/jszip/jszip.min.js"></script>
   <script src="popup.js"></script>
+  <script src="package.js"></script>
 </body>
 </html>
