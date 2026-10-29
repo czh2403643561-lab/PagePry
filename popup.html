@@ -9,9 +9,15 @@
 <body>
   <main>
     <div class="brand">PagePry</div>
-    <p>配置 Xiaomi MiMo API，为后续网页解析做准备。</p>
-    <button id="open-settings" type="button">打开设置</button>
-    <div id="popup-status" role="status" aria-live="polite"></div>
+    <p class="intro">用 MiMo 整理当前公开网页中的页面证据。</p>
+    <button id="analyze-current" class="button button-primary" type="button">分析当前页面</button>
+    <button id="open-settings" class="button button-secondary" type="button">API 设置</button>
+    <p class="privacy-note">仅在点击分析后，当前页标题、去掉查询参数的网址、页面描述、标题与表格摘要及最多 9,000 字可见文字会发送给小米 MiMo API；可能产生用量费用。请勿在敏感页面使用。</p>
+    <div id="popup-status" class="status" data-state="info" role="status" aria-live="polite"></div>
+    <section id="analysis-output" hidden aria-live="polite">
+      <h2>页面分析结果</h2>
+      <pre id="analysis-content"></pre>
+    </section>
   </main>
   <script src="popup.js"></script>
 </body>
